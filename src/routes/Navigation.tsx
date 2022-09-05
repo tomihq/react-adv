@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   NavLink
 } from 'react-router-dom';
@@ -23,7 +23,7 @@ export const Navigation = () => {
                 routes.map(({name, to})=>{
                   return ( 
                   <li key={name}>
-                    <NavLink to={to} activeClassName="nav-active" exact>{name}</NavLink>
+                    <NavLink to={to}>{name}</NavLink>
                   </li>)
                 })
               }
@@ -31,19 +31,19 @@ export const Navigation = () => {
             </ul>
           </nav>
 
-          <Switch>
+          <Routes>
       
             {
                 routes.map(({name, path, Component})=>{
                   return ( 
-                    <Route key={name} path={path}>
-                        <Component/>
-                    </Route>
+                    <Route key={name} path={path} element={<Component/>}/>
+                        
+                   
                   )
                 })
             }
               
-          </Switch>
+          </Routes>
         </div>
       </Router>
     </Suspense>
